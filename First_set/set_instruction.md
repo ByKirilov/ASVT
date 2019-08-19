@@ -66,12 +66,12 @@
 
 4. Настраиваем статический IP. Открываем файл `/etc/network/interfaces` и пишем в него, в конец:
 
-	`auto eth0`
-	`iface eth0 inet static`
-	`address _ip машинки_`
-	`netmask 255.255.255.0`
-	`network _адрес сети_`
-	`gateway _адрес компа_`
+	```auto eth0
+	iface eth0 inet static
+	address _ip машинки_
+	netmask 255.255.255.0
+	network _адрес сети_
+	gateway _адрес компа_```
 
 5. Перезагружаем
 
