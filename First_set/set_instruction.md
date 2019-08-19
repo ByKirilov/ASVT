@@ -64,7 +64,7 @@
 
 <http://www.microdev.it/wp/en/2016/07/11/sd-card-setup-for-orange-pi-pc-armbian-in-linux/>
 
-### Подключаемся
+### Подключимся
 
 Ждите в новых версиях
 
