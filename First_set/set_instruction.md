@@ -66,12 +66,14 @@
 
 4. Настраиваем статический IP. Открываем файл `/etc/network/interfaces` и пишем в него, в конец:
 
-	```auto eth0
+	```
+	auto eth0
 	iface eth0 inet static
 	address _ip машинки_
 	netmask 255.255.255.0
 	network _адрес сети_
-	gateway _адрес компа_```
+	gateway _адрес компа_
+	```
 
 5. Перезагружаем
 
@@ -80,8 +82,10 @@
 6. Переподключаемся по прописанному ip к юзеру которого прописали
 7. Обновляемся:
 
-	```sudo apt update
-	sudo apt upgrade```
+	```
+	sudo apt update
+	sudo apt upgrade
+	```
 
 8. Ставим нужные пакеты:
 
