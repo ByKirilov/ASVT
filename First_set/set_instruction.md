@@ -88,12 +88,19 @@
 	sudo apt-get install *имя пакета*
 
 	>gcc 
-	>g++ 
+	>
+	>g++
+	> 
 	>gdb 
+	> 
 	>peda-arm 
+	> 
 	>ntfs-3g 
+	> 
 	>cifs-utils 
+	> 
 	>krusader
+	> 
 	>python3
 
 9. Вы пришли к успеху!
