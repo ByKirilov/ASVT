@@ -7,7 +7,10 @@
 	- [armbian](https://www.armbian.com/orange-pi-zero/)
 	- [lubuntu](http://www.orangepi.org/downloadresources/orangepizero/2017-05-11/orangepizero_7f7ec2c4c22d7bd4d0d5fab.html)
 
-## На windows
+Инструкция [Windows](#На-Windows)
+Инструкция [Linux](#На-Linux)
+
+## На Windows
 
 ### Скачаем проги
 
