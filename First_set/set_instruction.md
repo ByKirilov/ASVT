@@ -161,5 +161,5 @@ ___
 ### Linux
 
 	```
-	$ sftp user@host
+	$ sftp user host
 	```
