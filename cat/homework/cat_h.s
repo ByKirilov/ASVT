@@ -94,6 +94,7 @@ _start:
 
 	subs 	r1, #1			@ s - чтобы sub поставил флаги
 	bne 	2b
+	bl 	format_off
 
 write:
 	mov 	r7, #4
@@ -101,7 +102,7 @@ write:
 	ldr 	r1, =resultbuffer
 @	ldr 	r2, =filelen
 @	ldr 	r2, [r2]
-	ldr 	r2, r5
+	mov 	r2, r5
 
 	svc 	#0
 	b 	exit
@@ -109,8 +110,8 @@ write:
 format_on:
 	push 	{lr}
 	mov 	r6, #1 			@ форматирование вкл
-	bl 	bold
 	bl 	green
+	bl 	bold
 @	bx 	lr
 	pop 	{r15}
 
