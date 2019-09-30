@@ -99,19 +99,85 @@ write:
 	mov 	r7, #4
 	mov 	r0, #1
 	ldr 	r1, =resultbuffer
-	ldr 	r2, =filelen
-	ldr 	r2, [r2]
+@	ldr 	r2, =filelen
+@	ldr 	r2, [r2]
+	ldr 	r2, r5
+
 	svc 	#0
 	b 	exit
 
 format_on:
+	push 	{lr}
 	mov 	r6, #1 			@ форматирование вкл
-	bx 	lr
+	bl 	bold
+	bl 	green
+@	bx 	lr
+	pop 	{r15}
 
 format_off:
 	eor 	r6, r6 			@ форматирование выкл
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x30
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
 	bx 	lr
 
+bold:
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x31
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
+	bx 	lr
+green:
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x33
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x32
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
+	bx 	lr
 upper:
 	cmp 	r3, #0x61
 	bmi	1f 			@ Если меньше то нам делать ничего не надо
