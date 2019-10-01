@@ -94,7 +94,7 @@ _start:
 
 	subs 	r1, #1			@ s - чтобы sub поставил флаги
 	bne 	2b
-	bl 	format_off
+	bl 	reset
 
 write:
 	mov 	r7, #4
@@ -107,35 +107,31 @@ write:
 	svc 	#0
 	b 	exit
 
+upper:
+	cmp 	r3, #0x61
+	bmi	1f 			@ Если меньше то нам делать ничего не надо
+	cmp	r3, #0x7b
+	submi	r3, #0x20		@ Вычли при условии
+1:
+	bx 	lr
 format_on:
 	push 	{lr}
 	mov 	r6, #1 			@ форматирование вкл
+	bl 	reset
 	bl 	green
 	bl 	bold
 @	bx 	lr
 	pop 	{r15}
 
 format_off:
+	push 	{lr}
 	eor 	r6, r6 			@ форматирование выкл
-	eor 	r9, r9
-
-	mov 	r9, #0x1b
-	str 	r9, [r4, r5]
-	add 	r5, #1
-
-	mov 	r9, #0x5b
-	str 	r9, [r4, r5]
-	add 	r5, #1
-
-	mov 	r9, #0x30
-	str 	r9, [r4, r5]
-	add 	r5, #1
-
-	mov 	r9, #0x6d
-	str 	r9, [r4, r5]
-	add 	r5, #1
-
-	bx 	lr
+	
+	bl 	reset
+@	bl 	black
+	bl 	yellow
+	bl 	blue_back
+	pop 	{r15}
 
 bold:
 	eor 	r9, r9
@@ -179,12 +175,93 @@ green:
 	str 	r9, [r4, r5]
 	add 	r5, #1
 	bx 	lr
-upper:
-	cmp 	r3, #0x61
-	bmi	1f 			@ Если меньше то нам делать ничего не надо
-	cmp	r3, #0x7b
-	submi	r3, #0x20		@ Вычли при условии
-1:
+black:
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x33
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x30
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
+	bx 	lr
+yellow:
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x33
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x35
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
+	bx 	lr
+blue_back:
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x34
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x34
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
+	bx 	lr
+reset:
+	eor 	r9, r9
+
+	mov 	r9, #0x1b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x5b
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x30
+	str 	r9, [r4, r5]
+	add 	r5, #1
+
+	mov 	r9, #0x6d
+	str 	r9, [r4, r5]
+	add 	r5, #1
 	bx 	lr
 
 upper_case:
