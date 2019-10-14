@@ -40,7 +40,7 @@ my_read:
 _start:
 	bl 	my_read
 	ldr 	r12, =filebuffer
-	bl 	write
+	bl 	my_write
 	b 	exit
 
 	eor 	r0, r0
@@ -52,7 +52,7 @@ _start:
 	@ eor 	r14, r14
 	@ bl 	read
 	ldr 	r12, =filebuffer
-	bl 	write
+	bl 	my_write
 	b 	_start
 
 	cmp 	r0, #0x03
@@ -122,7 +122,7 @@ _start:
 	bne 	2b
 	bl 	format_off
 
-write:
+my_write:
 	mov 	r7, #4
 	mov 	r0, #1
 	mov 	r1, r12
