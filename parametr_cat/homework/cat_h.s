@@ -25,18 +25,18 @@ exit:
 	svc 	#0
 
 read:
+	push 	{lr}
 	mov	r7, #3
 	mov	r0, #5
 	ldr 	r1, =filebuffer
-@	mov 	r2, #maxfilelen 	@ ОШИБКА
 	ldr 	r2, =maxfilelen
 	svc 	#0
 	cmp 	r0, #0			
 	bgt 	1f			@ jump		f - forward
-	@ bl 	typeerror
+	bl 	typeerror
 	b 	exit
 1:
-	bx 	lr
+	pop 	{r15}
 
 _start:
 	bl 	read
@@ -48,7 +48,7 @@ _start:
 	cmp 	r0, #0x02
 	@ eor 	r14, r14
 	@ bl 	read
-	ldr 	r12, =filebuffer
+	ldr 	r10, =filebuffer
 	bl 	write
 	b 	_start
 
@@ -122,7 +122,7 @@ _start:
 write:
 	mov 	r7, #4
 	mov 	r0, #1
-	mov 	r1, r12
+	mov 	r1, r10
 @	ldr 	r2, =filelen
 @	ldr 	r2, [r2]
 	mov 	r2, r5
