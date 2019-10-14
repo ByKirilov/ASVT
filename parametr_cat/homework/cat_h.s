@@ -10,7 +10,7 @@ maxfilelen = 2000000
 .lcomm	resultbuffer, maxfilelen
 
 .text
-typeerror:
+my_typeerror:
 	push 	{lr}
 	mov 	r7, #4
 	mov 	r0, #1
@@ -19,7 +19,7 @@ typeerror:
 	svc 	#0
 	pop 	{r15}
 
-exit:
+my_exit:
 	mov 	r7, #1
 	eor 	r0, r0			@ xor
 	svc 	#0
@@ -32,8 +32,8 @@ my_read:
 	svc 	#0
 	cmp 	r0, #0			
 	bgt 	1f			@ jump		f - forward
-	bl 	typeerror
-	b 	exit
+	bl 	my_typeerror
+	b 	my_exit
 1:
 	bx 	lr
 
@@ -41,7 +41,7 @@ _start:
 	bl 	my_read
 	ldr 	r12, =filebuffer
 	bl 	my_write
-	b 	exit
+	b 	my_exit
 
 	eor 	r0, r0
 	bl 	getchar
