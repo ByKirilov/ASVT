@@ -45,10 +45,11 @@ _start:
 	beq 	exit
 
 	cmp 	r0, #0x02
-	eor 	r14, r14
+	@ eor 	r14, r14
 	bl 	read
 	ldr 	r12, =filebuffer
 	bl 	write
+	b 	_start
 
 	cmp 	r0, #0x03
 	cmp 	r0, #0x04
