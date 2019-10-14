@@ -120,7 +120,7 @@ _start:
 write:
 	mov 	r7, #4
 	mov 	r0, #1
-	ldr 	r1, r12
+	mov 	r1, r12
 @	ldr 	r2, =filelen
 @	ldr 	r2, [r2]
 	mov 	r2, r5
