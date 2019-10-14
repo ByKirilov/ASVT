@@ -39,6 +39,7 @@ read:
 	bx 	lr
 
 _start:
+	bl 	read
 	eor 	r0, r0
 	bl 	getchar
 	cmp 	r0, #0x1b
@@ -46,7 +47,7 @@ _start:
 
 	cmp 	r0, #0x02
 	@ eor 	r14, r14
-	bl 	read
+	@ bl 	read
 	ldr 	r12, =filebuffer
 	bl 	write
 	b 	_start
