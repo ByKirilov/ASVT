@@ -33,7 +33,7 @@ read:
 	svc 	#0
 	cmp 	r0, #0			
 	bgt 	1f			@ jump		f - forward
-	bl 	typeerror
+	@ bl 	typeerror
 	b 	exit
 1:
 	bx 	lr
