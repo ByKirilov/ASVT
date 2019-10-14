@@ -29,7 +29,7 @@ read:
 	mov	r0, #5
 	ldr 	r1, =filebuffer
 @	mov 	r2, #maxfilelen 	@ ОШИБКА
-	ldr 	r2, =maxfilelen
+	ldr 	r2, #maxfilelen
 	svc 	#0
 	cmp 	r0, #0			
 	bgt 	1f			@ jump		f - forward
