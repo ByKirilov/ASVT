@@ -40,7 +40,7 @@ read:
 
 _start:
 	eor 	r0, r0
-	bl 	getch
+	bl 	getchar
 	cmp 	r0, #0x1b
 	beq 	exit
 
