@@ -25,7 +25,6 @@ exit:
 	svc 	#0
 
 read:
-	push 	{lr}
 	mov	r7, #3
 	mov	r0, #5
 	ldr 	r1, =filebuffer
@@ -36,10 +35,14 @@ read:
 	bl 	typeerror
 	b 	exit
 1:
-	pop 	{r15}
+	bx 	lr
 
 _start:
 	bl 	read
+	ldr 	r12, =filebuffer
+	bl 	write
+	b 	exit
+
 	eor 	r0, r0
 	bl 	getchar
 	cmp 	r0, #0x1b
@@ -48,7 +51,7 @@ _start:
 	cmp 	r0, #0x02
 	@ eor 	r14, r14
 	@ bl 	read
-	ldr 	r10, =filebuffer
+	ldr 	r12, =filebuffer
 	bl 	write
 	b 	_start
 
@@ -122,7 +125,7 @@ _start:
 write:
 	mov 	r7, #4
 	mov 	r0, #1
-	mov 	r1, r10
+	mov 	r1, r12
 @	ldr 	r2, =filelen
 @	ldr 	r2, [r2]
 	mov 	r2, r5
