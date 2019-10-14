@@ -24,7 +24,7 @@ exit:
 	eor 	r0, r0			@ xor
 	svc 	#0
 
-read:
+my_read:
 	mov	r7, #3
 	mov	r0, #5
 	ldr 	r1, =filebuffer
@@ -38,7 +38,7 @@ read:
 	bx 	lr
 
 _start:
-	bl 	read
+	bl 	my_read
 	ldr 	r12, =filebuffer
 	bl 	write
 	b 	exit
