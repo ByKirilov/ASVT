@@ -35,6 +35,8 @@ my_read:
 	bl 	my_typeerror
 	b 	my_exit
 1:
+	ldr 	r1, =filelen
+	str 	r0, [r1]		@ берет р1 как адрес и туда кладём р0
 	bx 	lr
 
 _start:
@@ -61,9 +63,6 @@ _start:
 	cmp 	r0, #0x06
 
 	b 	_start
-
-	ldr 	r1, =filelen
-	str 	r0, [r1]		@ берет р1 как адрес и туда кладём р0
 
 @	bl 	upper_case
 
