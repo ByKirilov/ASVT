@@ -1,0 +1,1 @@
+nano /usr/include/asm/unistd-common.h
